@@ -1,0 +1,31 @@
+name: Build Debian Package
+
+on:
+  push:
+    branches: [ "branchAutomake" ]
+  pull_request:
+    branches: [ "branchAutomake" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Build Environment
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential devscripts debhelper
+
+    - name: Build Debian package
+      run: |
+        debuild -us -uc
+
+    - name: Upload Debian Package
+      uses: actions/upload-artifact@v3
+      with:
+        name: my_program-deb-package
+        path: ../*.deb
