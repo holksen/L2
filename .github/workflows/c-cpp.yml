@@ -2,9 +2,9 @@ name: Build Project
 
 on:
   push:
-    branches: [ "branchMake" ]
+    branches: [branchMake, master]
   pull_request:
-    branches: [ "branchMake" ]
+    branches: [branchMake, master]
 
 jobs:
   build:
