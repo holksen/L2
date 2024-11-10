@@ -5,7 +5,6 @@ my_program_SOURCES = main.cpp FuncA.cpp FuncA.h
 
 check_PROGRAMS = test_FuncA
 test_FuncA_SOURCES = tests/test_FuncA.cpp FuncA.cpp FuncA.h
-test_FuncA_LDADD = -lgtest -lgtest_main -pthread
 
 EXTRA_DIST = debian/control debian/rules debian/changelog debian/copyright
 
