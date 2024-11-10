@@ -2,9 +2,9 @@ name: C++ Build and Test
 
 on:
   push:
-    branches: [ "branchAutoTest" ]
+    branches: [branchAutoTest, master]
   pull_request:
-    branches: [ "branchAutoTest" ]
+    branches: [branchAutoTest, master]
 
 jobs:
   build:
