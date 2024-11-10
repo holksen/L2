@@ -2,9 +2,9 @@ name: Build Debian Package
 
 on:
   push:
-    branches: [ "branchAutomake" ]
+    branches: [branchAutomake, master]
   pull_request:
-    branches: [ "branchAutomake" ]
+    branches: [branchAutomake, master]
 
 jobs:
   build:
