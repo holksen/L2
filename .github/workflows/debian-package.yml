@@ -2,39 +2,40 @@ name: Build Debian Package
 
 on:
   push:
-    branches: [branchAutomake, branchAutoPackage, master]
+    branches: [branchAutoPackage, master]  
   pull_request:
-    branches: [branchAutomake, branchAutoPackage, master]
+    branches: [branchAutoPackage, master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 
 
-    - name: Checkout branchAutoPackage
-      run: git checkout branchAutoPackage
+    - name: Switch to branch with configure.ac
+      run: git checkout branchAutoPackage 
 
-    - name: Set up Build Environment
+    - name: Install build tools
       run: |
-        sudo apt update
-        sudo apt install -y build-essential devscripts debhelper
-
-    - name: Set up autotools
-      run: sudo apt-get install -y automake autoconf
+        sudo apt-get update
+        sudo apt-get install -y autoconf automake libtool build-essential devscripts debhelper
 
     - name: Generate configure script
-      run: autoreconf -i
+      run: autoreconf -i 
+
+    - name: Configure the project
+      run: ./configure 
 
     - name: Build Debian package
       run: |
-        debuild -us -uc
+        debuild -us -uc  
 
     - name: Upload Debian Package
       uses: actions/upload-artifact@v3
       with:
         name: my_program-deb-package
-        path: ../*.deb
+        path: ../*.deb 
