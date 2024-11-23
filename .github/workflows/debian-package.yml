@@ -15,6 +15,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Checkout branchAutoPackage
+      run: git checkout branchAutoPackage
+
     - name: Set up Build Environment
       run: |
         sudo apt update
@@ -25,9 +28,6 @@ jobs:
 
     - name: Generate configure script
       run: autoreconf -i
-
-    - name: Configure the project
-      run: ./configure
 
     - name: Build Debian package
       run: |
