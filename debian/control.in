@@ -1,0 +1,11 @@
+Source: my_program
+Section: utils
+Priority: optional
+Maintainer: Ksenia <cheryxso@gmail.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.5.1
+
+Package: my_program
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: My Program
