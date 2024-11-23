@@ -14,11 +14,20 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     - name: Set up Build Environment
       run: |
         sudo apt update
         sudo apt install -y build-essential devscripts debhelper
+
+    - name: Set up autotools
+      run: sudo apt-get install -y automake autoconf
+
+    - name: Generate configure script
+      run: autoreconf -i
+
+    - name: Configure the project
+      run: ./configure
 
     - name: Build Debian package
       run: |
