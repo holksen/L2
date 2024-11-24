@@ -19,6 +19,9 @@ jobs:
     - name: Switch to branch with configure.ac
       run: git checkout branchAutoPackage 
 
+    - name: Checkout debian directory from master
+      run: git checkout master -- debian
+
     - name: Install build tools
       run: |
         sudo apt-get update
